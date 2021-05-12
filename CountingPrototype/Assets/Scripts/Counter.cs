@@ -6,9 +6,13 @@ using UnityEngine.UI;
 
 public class Counter : MonoBehaviour
 {
+    public enum CounterType { ZERO, FIFTY, HUNDRED, TWOHUNDRED}
+
+    public CounterType counterType;
+
     public Text CounterText;
 
-    private int Count = 0;
+    static int Count = 0;
 
     private void Start()
     {
@@ -17,7 +21,29 @@ public class Counter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Count += 1;
-        CounterText.text = "Count : " + Count;
+        switch (counterType)
+        {
+            case CounterType.ZERO:
+                
+                break;
+            case CounterType.FIFTY:
+                Count += 50;
+                CounterText.text = "SCORE : " + Count;
+                break;
+            case CounterType.HUNDRED:
+                Count += 100;
+                CounterText.text = "SCORE : " + Count;
+                break;
+            case CounterType.TWOHUNDRED:
+                Count += 200;
+                CounterText.text = "SCORE : " + Count;
+                break;
+            default:
+                break;
+        }
+
+        Destroy(other.gameObject);
+
+
     }
 }
